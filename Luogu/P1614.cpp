@@ -8,7 +8,7 @@ int main(){
         cin >> an[i];
     }
     int ans = 1145141419;
-    for(int i = 0; i < n - m; i++){
+    for(int i = 0; i < (m == n ? 1 : n - m); i++){
         int sum = 0;
         for(int j = i; j < i + m; j++){
             sum += an[j];
@@ -17,6 +17,5 @@ int main(){
     }
     cout << ans;
     return 0;
-    
 }
 
