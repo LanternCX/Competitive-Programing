@@ -1,5 +1,4 @@
+**/build
+**/.vscode
 *.exe
-*
-!*.*
-/.vscode
 tempCodeRunnerFile.cpp
