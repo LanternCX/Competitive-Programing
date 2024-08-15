@@ -5,13 +5,13 @@ const int N = 20000;
 
 bool p[N];
 void ai(){
-    for(int i = 0; i <= N; i++){
+    for(int i = 0; i < N; i++){
         p[i] = true;
     }
     p[0] = p[1] = false;
-    for(int i = 2; i * i <= N; i++){
+    for(int i = 2; i * i < N; i++){
         if(p[i]){
-            for(int j = i * i; j <= N; j += i){
+            for(int j = i * i; j < N; j += i){
                 p[j] = false;
             }
         }
@@ -20,7 +20,7 @@ void ai(){
 
 int main(){
     ai();
-    for(int i = 0; i <= N; i++){
+    for(int i = 0; i < N; i++){
         if(p[i]){
             cout << i << endl;
         }
