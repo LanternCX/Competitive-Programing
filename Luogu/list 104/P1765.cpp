@@ -12,13 +12,12 @@ vector<string> key = {
     "wxyz"
 };
 int getNum(char c){
-    for(int i = 0; i < key.size(); i++){
-        string s = key[i];
-        int index = s.find(c);
-        if(index == string::npos){
+    for(string s : key){
+        int idx = s.find(c);
+        if(idx == string::npos){
             continue;
         }
-        return index + 1;
+        return idx + 1;
     }
     return 0;
 }
