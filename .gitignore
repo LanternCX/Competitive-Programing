@@ -1,5 +1,8 @@
 **/build
 **/.vscode
+**/.cph
 *.exe
 tempCodeRunnerFile.cpp
 tempCodeRunnerFile.c
+test.cpp
+test.c
