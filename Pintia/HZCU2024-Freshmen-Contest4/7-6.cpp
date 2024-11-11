@@ -41,3 +41,13 @@ int main(){
 	}
 	return 0;
 }
+/**
+ * Hack:
+ * catxxcat
+ * 
+ * Expected:
+ * No
+ * 
+ * Received:
+ * Yes
+ */
