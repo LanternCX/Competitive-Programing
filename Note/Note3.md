@@ -262,7 +262,7 @@ stack<int> st;
 // 使用 vector 初始化
 vector<int> vec = {1, 2, 3};
 stack<int, vector<int>> st(vec);
-stack<int, std::vector<int>> st({10, 20, 30});
+stack<int, vector<int>> st({10, 20, 30});
 // 使用 deque / list / stack 等容器初始化同理
 deque<int> deq = {4, 5, 6};
 stack<int, deque<int>> st(deq);
@@ -309,11 +309,11 @@ int top = que.front();
 priority_queue<int> pq
 // 自定义比较函数
 auto cmp = [](int a, int b) { return abs(a) > abs(b); };
-priority_queue<int, std::vector<int>, decltype(cmp)> pq(cmp);
+priority_queue<int, vector<int>, decltype(cmp)> pq(cmp);
 // 自定义比较函数（法二）
 struct Cmp {
     bool operator()(int a, int b) const {
-        return std::abs(a) > std::abs(b); // 按绝对值升序排序
+        return abs(a) > abs(b); // 按绝对值升序排序
     }
 };
 priority_queue<int, vector<int>, Cmp> pq
@@ -376,8 +376,8 @@ if(it != vec.end()){
 }
 
 // binary_search() 二分搜索，仅用于判断元素是否存在
-std::sort(vec.begin(), vec.end());  // 先排序
-bool found = std::binary_search(vec.begin(), vec.end(), 4);
+sort(vec.begin(), vec.end());  // 先排序
+bool found = binary_search(vec.begin(), vec.end(), 4);
 // binary_search() 自定义比较函数
 struct Person {
     int age;
@@ -404,7 +404,7 @@ sort(vec.begin(), vec.end(), [](int a, int b) -> int {
 sort(vec.begin(), vec.end(), greater<int>());
 // partial_sort()对区间排序，用法与sort类似
 partial_sort(vec.begin(), vec.begin() + 3, vec.end());
-partial_sort(vec.begin(), vec.begin() + 3, vec.end(), std::greater<int>());
+partial_sort(vec.begin(), vec.begin() + 3, vec.end(), greater<int>());
 ```
 
 ### next_permutation() & prev_permutation()
@@ -422,6 +422,7 @@ do{
     for (int i : vec){
         cout << i << " ";
     }
+    cout << '\n';
 }while(next_permutation(vec.begin(), vec.end()));
 
 // 自定义排序比较方法
@@ -433,7 +434,55 @@ next_permutation(people.begin(), people.end(), cmp)
 
 ### lower_bound() & upper_bound()
 
+在容器内进行二分查找，**需要先对元素进行排序**
+
 `lower_bound()`返回指向第一个**大于等于**`x`的元素的位置的迭代器，如果不存在这样的元素，则返回尾迭代器
 
-`lower_bound()`返回指向第一个**大于**`x`的元素的位置的迭代器，如果不存在这样的元素，则返回尾迭代器
+`upper_bound()`返回指向第一个**大于**`x`的元素的位置的迭代器，如果不存在这样的元素，则返回尾迭代器
+
+```c++
+vector<int> vec = {1,1,4,5,1,5};
+// 自定义比较函数
+auto comp = [](int a, int b) { return a > b; };
+auto it = upper_bound(vec.begin(), vec.end(), 4, comp);
+if (it != vec.end()) {
+    int idx = it - vec.begin();
+}
+```
+
+### accmulate()
+
+`accumulate()` 是一个用于求和、求积、以及累积各种其他操作的函数，常用于处理序列上的聚合操作
+
+```c++
+// 0 为初值，对区间内的元素进行op操作，默认为加法
+vector<int> vec = {1,2,3,4,5};
+int sum = accumulate(vec.begin(), vec.end(), 0);
+// 使用 accumulate 计算乘积，初始值为 1
+int mul = accumulate(vec.begin(), vec.end(), 1, multiplies<int>());
+// 使用 accumulate 拼接字符串，初始值为空字符串
+vector<string> words = {"Hello", "World", "!"};
+string result = accumulate(words.begin(), words.end(), string(""));
+// 使用 accumulate 计算累积的差值
+int difference = accumulate(vec.begin(), vec.end(), 0, [](int a, int b) {
+	return a - b;
+});
+```
+
+### nth_element()
+
+`nth_element()` 是一种用于部分排序的算法，适合在需要找到第 n 小/大的元素或部分排序时使用
+
+```c++
+vector<int> nums = {4, 1, 7, 3, 9, 2, 5};
+// 找到第 3 小的元素（即第 4 小，因为索引从 0 开始）
+nth_element(nums.begin(), nums.begin() + 3, nums.end());
+cout << "第 3 小的元素是：" << nums[3];
+// 使用自定义比较函数进行降序排序
+nth_element(nums.begin(), nums.begin() + k, nums.end(), greater<int>());
+cout << "第 2 大的元素是：" << nums[k];
+// 应用：查找中位数
+nth_element(nums.begin(), nums.begin() + nums.size() / 2, nums.end());
+cout << "中位数是：" << nums[nums.size() / 2] << '\n';
+```
 
