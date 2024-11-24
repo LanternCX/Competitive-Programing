@@ -9,8 +9,8 @@ int main(){
         cin >> arr[i];
     }
     int l = 0, r = 5e5 + 10;
-    while(l <= r){
-        int mid = (l + r) / 2;
+    while(l < r){
+        int mid = (l + r + 1) / 2;
         int sum = 0;
         for(int x : arr){
             if(x <= mid * a){
@@ -24,10 +24,10 @@ int main(){
         if(sum <= mid){
             r = mid - 1;
         }else {
-            l = mid + 1;
+            l = mid;
         }
     }
-    cout << l;
+    cout << r + 1;
     return 0;
 }
 /**

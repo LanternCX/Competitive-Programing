@@ -24,10 +24,10 @@ int main(){
             }
         }
         // cout << "temp: " << temp << '\n';
-        if(temp > 0){
-            r = mid;
-        }else if (temp <= 0) {
+        if(temp <= 0){
             l = mid + 1;
+        }else{
+            r = mid;
         }
     }
     cout << l - 1;
