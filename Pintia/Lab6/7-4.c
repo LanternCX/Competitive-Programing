@@ -1,36 +1,54 @@
+// 输入输出头文件
 #include <stdio.h>
 
+// 主函数，程序入口
 int main(){
+    // 运算符
     char ch;
+    // 答案，初值为输入的第一个数
     int ans;
+    // 输入数字
     scanf("%d", &ans);
+    // 循环读取运算符和数字，到出现 '=' 循环终止
     while((ch = getchar()) != '='){
-        int temp;
-        scanf("%d", &temp);
+        // 被执行运算的数字
+        int num;
+        // 输入数字
+        scanf("%d", &num);
+        // 利用 switch 语句对运算符进行判断以执行相应的计算
         switch(ch){
+            // 执行加法
             case '+':
-                ans += temp;
+                ans += num;
                 break;
+            // 执行减法
             case '-':
-                ans -= temp;
+                ans -= num;
                 break;
+            // 执行乘法
             case '*':
-                ans *= temp;
+                ans *= num;
                 break;
+            // 执行除法
             case '/':
-                if(temp == 0){
+                // 判断除法分母是否合法
+                if(num == 0){
+                    // 如果分母非法则打印 ERROR 并退出程序
                     printf("ERROR");
                     return 0;
                 }
-                ans /= temp;
+                // 执行除法
+                ans /= num;
                 break;
+            // 非法字符则打印 ERROR
             default:
                 printf("ERROR");
                 return 0;
         }
-        
     }
+    // 打印最终答案
     printf("%d", ans);
+    return 0;
 }
 // int main(){
 //     int arr[1000];
