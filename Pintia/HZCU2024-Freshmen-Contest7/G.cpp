@@ -1,35 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
+using ll = long long;
 void sol(){
-    int x, y;
+    ll x, y;
     cin >> x >> y;
     if(x <= y){
         cout << y - x << '\n';
-    }else {
-        int det = y - x;
-        int num;
-        int sum = 0;
-        for(int i = 0; i < 30; i++){
-            sum += i << i;
-            if((1 << i) > det){
-                
+        return;    
+    }else{
+        ll cost = 0;
+        for(int i = 30; i >= 0; i--){
+            int a = (x >> i) & 1;
+            int b = (y >> i) & 1;
+            if(a == 1 && b == 0){
+                cost += (1 << i);
+                x -= (1 << i);
+                if(x <= y){
+                    break;
+                }
             }
         }
+        cout << cost + y - x << '\n';
     }
+
 }
 int main(){
     ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    int t;
-    cin >> t;
-    while(t--){
-        sol(); 
+    int n;
+    cin >> n;
+    while(n--){
+        sol();
     }
     return 0;
 }
 /**
- * To Be Done
+ * 1110 14 1010 10
+ * 1011 11
  * 
- * 13: 1101
- * 10: 1010
+ * 
+ * 1 + 2 + 
+ * 
+ * &
+ * 1 1 1 
+ * 1 0 0
+ * 0 1 0
+ * 0 0 0
  * 
  */
