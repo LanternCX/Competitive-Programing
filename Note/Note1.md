@@ -124,3 +124,14 @@ s.insert(int pos, string str);
 s.replace(int pos, int count, string str);
 ```
 
+### 时间复杂度
+
+时间复杂度与建议不超过的`n`的范围
+
+- `O(logn)`: long long 内都行
+- `O(n)`: 1e7
+- `O(nlogn)`: 1e5 ~ 5e5
+- `O(n^2)`: 1e3 ~ 5e3
+- `O(n^3)`: 200 ~ 500
+- `O(2^n)`: 20~24
+- `O(n!)`: 12
