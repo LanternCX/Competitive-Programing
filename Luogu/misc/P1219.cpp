@@ -1,23 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
+// int ansmp[15][15];
 struct node{
     int x, y;
 };
 int ans = 0;
 int n;
 void dfs(node now, int l, vector<vector<int>> mp, vector<vector<int>> vis){
-    if(l == n){
+    if(l == n + 1){
+        ans++;
         for(int i = 1; i <= n; i++){
             for(int j = 1; j <= n; j++){
                 if(mp[i][j] == 1){
-                    cout << j << ' ';
+                    if(ans <= 3){
+                        cout << j << ' ';
+                    }
+                    // ansmp[i][j] = 1;
                 }
             }
         }
-        cout << '\n';
+        if(ans <= 3){
+            cout << '\n';
+        }
         return;
     }
 
+    vis[now.x][now.y] = 1;
     vector<node> next;
     for(int i = 1; i <= n; i++){
         for(int j = 1; j <= n; j++){
@@ -30,23 +38,44 @@ void dfs(node now, int l, vector<vector<int>> mp, vector<vector<int>> vis){
         return;
     }
     for(node nd : next){
-        vector<vector<int>> tempvis;
-        vector<vector<int>> tempmp;
+        vector<vector<int>> tempvis = vis;
+        vector<vector<int>> tempmp = mp;
         int x = nd.x;
         int y = nd.y;
-        while (x != 0 && x != n + 1 && y != 0 && y != n + 1 ) {
+        if(vis[nd.x][nd.y]){
+            continue;
+        }
+
+        while (x > 0 && x <= n && y > 0 && y <= n) {
+            tempvis[x][y] = 1;
             x++;
             y++;
-            tempvis[x][y] = 1;
         }
         x = nd.x;
         y = nd.y;
-        while (x != 0 && x != n + 1 && y != 0 && y != n + 1 ) {
+        while (x > 0 && x <= n && y > 0 && y <= n ) {
+            tempvis[x][y] = 1;
             x--;
             y--;
-            tempvis[x][y] = 1;
         }
-
+        x = nd.x;
+        y = nd.y;
+        while (x > 0 && x <= n && y > 0 && y <= n) {
+            tempvis[x][y] = 1;
+            x++;
+            y--;
+        }
+        x = nd.x;
+        y = nd.y;
+        while (x > 0 && x <= n && y > 0 && y <= n) {
+            tempvis[x][y] = 1;
+            x--;
+            y++;
+        }
+        for(int i = 1; i <= n; i++){
+            tempvis[i][nd.y] = 1;
+            tempvis[nd.x][i] = 1;
+        }
         tempmp[nd.x][nd.y] = 1;
         dfs(nd, l + 1, tempmp, tempvis);
     }
@@ -70,11 +99,13 @@ int main(){
         }
         vis.push_back(temp);
     }
-    for(int i = 1; i <= n; i++){
-        for(int j = 1; j <= n; j++){
+    for(int i = 1; i < n; i++){
+        for(int j = 1; j < n; j++){
+            vis[i][j] = 1;
             dfs({i, j}, 1, mp, vis);
         }
     }
+    cout << ans;
     return 0;
 }
 /**
