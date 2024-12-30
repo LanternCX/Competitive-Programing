@@ -1,113 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
-// int ansmp[15][15];
-struct node{
-    int x, y;
-};
-int ans = 0;
+
 int n;
-void dfs(node now, int l, vector<vector<int>> mp, vector<vector<int>> vis){
-    if(l == n + 1){
-        ans++;
-        for(int i = 1; i <= n; i++){
-            for(int j = 1; j <= n; j++){
-                if(mp[i][j] == 1){
-                    if(ans <= 3){
-                        cout << j << ' ';
-                    }
-                    // ansmp[i][j] = 1;
-                }
-            }
+bool col[20], diag1[40], diag2[40];
+stack<int> st;
+vector<vector<int>> ans;
+
+void dfs(int row) {
+    if (row == n + 1) {
+        stack<int> temp = st;
+        vector<int> arr;
+        while(!temp.empty()){
+            arr.push_back(temp.top());
+            temp.pop();
         }
-        if(ans <= 3){
-            cout << '\n';
-        }
+        ans.push_back(arr);
         return;
     }
 
-    vis[now.x][now.y] = 1;
-    vector<node> next;
-    for(int i = 1; i <= n; i++){
-        for(int j = 1; j <= n; j++){
-            if(!vis[i][j]){
-                next.push_back({i, j});
-            }
-        }
-    }
-    if(next.empty()){
-        return;
-    }
-    for(node nd : next){
-        vector<vector<int>> tempvis = vis;
-        vector<vector<int>> tempmp = mp;
-        int x = nd.x;
-        int y = nd.y;
-        if(vis[nd.x][nd.y]){
-            continue;
-        }
+    for (int i = 1; i <= n; i++) {
+        if (!col[i] && !diag1[row - i + n] && !diag2[row + i]) {
 
-        while (x > 0 && x <= n && y > 0 && y <= n) {
-            tempvis[x][y] = 1;
-            x++;
-            y++;
+            st.push(i);
+            col[i] = diag1[row - i + n] = diag2[row + i] = true;
+            dfs(row + 1);
+            st.pop();
+            col[i] = diag1[row - i + n] = diag2[row + i] = false;
         }
-        x = nd.x;
-        y = nd.y;
-        while (x > 0 && x <= n && y > 0 && y <= n ) {
-            tempvis[x][y] = 1;
-            x--;
-            y--;
-        }
-        x = nd.x;
-        y = nd.y;
-        while (x > 0 && x <= n && y > 0 && y <= n) {
-            tempvis[x][y] = 1;
-            x++;
-            y--;
-        }
-        x = nd.x;
-        y = nd.y;
-        while (x > 0 && x <= n && y > 0 && y <= n) {
-            tempvis[x][y] = 1;
-            x--;
-            y++;
-        }
-        for(int i = 1; i <= n; i++){
-            tempvis[i][nd.y] = 1;
-            tempvis[nd.x][i] = 1;
-        }
-        tempmp[nd.x][nd.y] = 1;
-        dfs(nd, l + 1, tempmp, tempvis);
     }
 }
-int main(){
-    ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+
+int main() {
     cin >> n;
-    vector<vector<int>> mp;
-    for(int i = 0; i <= n; i++){
-        vector<int> temp(n + 1);
-        for(int i = 0; i <= n; i++){
-            temp[i] = 0;
+    dfs(1);
+
+    for (int i = 0; i < 3; i++) {
+        for(int j = ans[i].size() - 1; j >= 0; j--){
+            cout << ans[i][j] << ' ';
         }
-        mp.push_back(temp);
+        cout << "\n";
     }
-    vector<vector<int>> vis;
-    for(int i = 0; i <= n; i++){
-        vector<int> temp(n + 1);
-        for(int i = 0; i <= n; i++){
-            temp[i] = 0;
-        }
-        vis.push_back(temp);
-    }
-    for(int i = 1; i < n; i++){
-        for(int j = 1; j < n; j++){
-            vis[i][j] = 1;
-            dfs({i, j}, 1, mp, vis);
-        }
-    }
-    cout << ans;
+    cout << ans.size() << "\n";
     return 0;
 }
-/**
- * To Be Done
- */
