@@ -20,8 +20,6 @@ struct Team{
      */
     int id;
 };
-// 球队列表
-struct Team list[1000];
 /**
  * @brief 交换两个球队信息
  * @param a 指向球队A的指针
@@ -78,6 +76,8 @@ void sort(struct Team * begin, struct Team * end){
     }
 }
 int main(){
+    // 球队列表
+    struct Team list[1000];
     // 球队总数 n
     int n;
     // 输入球队总数 n
