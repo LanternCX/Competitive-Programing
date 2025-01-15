@@ -18,11 +18,11 @@ int bfs(){
     while(!q.empty()){
         node now = q.front();
         q.pop();
-        // if(vis[now.x][now.y]){
-        //     continue;
-        // }
-        // vis[now.x][now.y] = 1;
-        cout << now.x << ' ' << now.y << '\n';
+        if(vis[now.x][now.y] >= now.is){
+            continue;
+        }
+        vis[now.x][now.y] = now.is;
+        // cout << '{' << now.x << ' ' << now.y << '}' << now.is << " l:" << now.l<< '\n';
         if(now.x == now.y && now.x == n){
             return now.l;
         }
@@ -42,7 +42,7 @@ int bfs(){
             }
 
             if(mp[next.x][next.y] == '%'){
-                next.is = k;
+                next.is = k + 1;
             }
             q.push(next);
         }
@@ -55,6 +55,11 @@ int main(){
     for(int i = 1; i <= n; i++){
         for(int j = 1; j <= n; j++){
             cin >> mp[i][j];
+        }
+    }
+    for(int i = 0; i <= N; i++){
+        for(int j = 0; j <= N; j++){
+            vis[i][j] = -1;
         }
     }
     cout << bfs();
