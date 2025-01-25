@@ -9,14 +9,20 @@ int main() {
     for (int i = 0; i < n; i++) {
         cin >> a[i];
     }
-    int max = INT_MIN, temp = 0;
-    for (int i = 0; i < n; i++) {
-        temp += a[i];
-        max = temp > max ? temp : max;
-        if (temp < 0) {
-            temp = 0;
-        }
+
+    vector<int> pre(n);
+    pre[0] = a[0];
+    for (int i = 1; i < n; i++) {
+        pre[i] = pre[i - 1] + a[i];
     }
-    cout << max << endl;
+
+    int mn = 0, ans = INT_MIN;
+
+    for (int i = 0; i < n; i++) {
+        ans = max(ans, pre[i] - mn);
+        mn = min(mn, pre[i]);
+    }
+
+    cout << ans;
     return 0;
 }
