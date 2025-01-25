@@ -1,4 +1,4 @@
-# ACM Note No.6: 数论
+# ACM Note No.7: 数论
 
 ## 1. 进制
 

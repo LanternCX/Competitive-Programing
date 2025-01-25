@@ -8,7 +8,7 @@
 - 无后效性：已经求解的子问题，不会再受到后续决策的影响
 - 子问题重叠：一个相同的子问题如果需要被求解多次，可以先求解一次然后将子问题的解存起来后续直接使用
 
-xxxxxxxxxx /*** @param g 图的邻接矩阵*/void floyd(vector<vector<int>> &g){    int n = g.size();    for(int k = 0; k < n; k++){        for(int i = 0; i < n; i++){            for(int j = 0; j < n; j++){                if (g[i][k] != inf && g[k][j] != inf) {                    // 状态转移                    g[i][j] = min(g[i][j], g[i][k] + g[k][j]);                }            }        }    }}c++
+求解动态规划问题有几个基本步骤：
 
 1. 通过与状态有关的变量**定义状态**
 2. 确定**状态转移方程**

@@ -1,4 +1,4 @@
-# ACM Note No.7: DFS
+# ACM Note No.6: DFS
 
 深度优先搜索（DFS）常常用于解决图的连通性问题，暴力枚举问题等等
 

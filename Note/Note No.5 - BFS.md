@@ -8,8 +8,6 @@
 
 记得要打上`vis[]`数组标记访问过的地址不然会死循环
 
-### xxxxxxxxxx #include <bits/stdc++.h>using namespace std;int n, m;void dfs(int now, vector<int> arr){    // 判断DFS到达终点，打印答案    if(arr.size() == m){        for(int x : arr){            cout << x << ' ';        }        cout << '\n';        return;    }        // 如果没有到达终点，枚举下一个数字    for(int i = now; i <= n - (m - arr.size() - 1); i++){        vector<int> temp = arr;        temp.push_back(i);        dfs(i + 1, temp);    }}int main(){    ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);    cin >> n >> m;    dfs(1, {});    return 0;}cpp
-
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
