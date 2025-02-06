@@ -63,14 +63,36 @@ void sol(){
     };
 
     ll sum = 0;
-    vector<int> idx;
-    for(int i = 0; i < n; i++){
-        if(s[i] == '?'){
-            s[i] = '0';
-            idx.push_back(i);
+    auto dfs = [&](auto&& dfs, string str, int idx) -> void {
+        // cout << str << '\n';
+        if(idx == str.length()){
+            // cout << '\n';
+            sum += val(str) % p;
+            return;
         }
-    }
-    
+        string temp = str;
+        int next = n;
+        for(int i = idx + 1; i < (int) str.length(); i++){
+            if(str[i] == '?'){
+                next = i;
+                break;
+            }
+        }
+        if(next == n){
+            dfs(dfs, temp, next);
+        }else{
+            if(temp[next] == '?'){
+                temp[next] = '0';
+            }
+            dfs(dfs, temp, next);
+            temp = str;
+            if(temp[next] == '?'){
+                temp[next] = '1';
+            }
+            dfs(dfs, temp, next);
+        }
+    };
+    dfs(dfs, s, -1);
     cout << sum << '\n';
 }
 int main(){
@@ -83,31 +105,13 @@ int main(){
     return 0;
 }
 /**
- * 从枚举的思路出发
- * 注意到两次枚举的结果是相似的
- * 存在什么关系呢？
+ * 01010101
+ * 1101 01: 2 / 10: 1
  * 
- * 对于
- * val(1000)和val(1001)
- * 
- * 可以对头尾和中间段分类讨论：
- * 对于中间段：
- * 对val的贡献可以统计
- * 对于头尾段同样可以
- * 也就是说下一个状态可以由上一个状态转移过来？
- * 所以可以考虑dp?
- * 先将所有 ？ 置为 0
- * 对于每个 被置为 0 的 s[i]
- * 如何定义状态呢？
- * 定义状态：把第 i 位由 0 置为 1的 val 值
- * 那么
- * dp[i]由什么变量决定呢？
- * 能到达 dp[i] 的所有状态 和 s[i + 1] s[i - 1] 决定
- * 是不是可以用 dp[i] 更新其他的状态？
- * 也不对
- * 
- * 貌似不能达到线性emm
- * 
- * 也就是说
- * dp[i] = sum(dp[i])
+ * 00 -> 01
+ * 01 -> 
+ * 101
+ * 001
+ * 000
+ * 100
  */
