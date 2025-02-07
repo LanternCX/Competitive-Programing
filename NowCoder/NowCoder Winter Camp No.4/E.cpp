@@ -5,8 +5,6 @@ void sol(){
     ll n, m;
     cin >> n >> m;
     vector<vector<int>> mp(n + 1, vector<int>(m + 1));
-    ll max1 = 0;
-    ll max2 = 0;
     for(ll i = 1; i <= n; i++){
         for(ll j = 1; j <= m; j++){
             cin >> mp[i][j];
