@@ -4,9 +4,7 @@ using namespace std;
 struct DSU {
     vector<int> fa;
     int n;
-    DSU(int size) {
-        n = size;
-        fa = vector<int>(n);
+    DSU(int size): n(size), fa(size + 1) {
         for(int i = 0; i < n; i++){
             fa[i] = i;
         }
