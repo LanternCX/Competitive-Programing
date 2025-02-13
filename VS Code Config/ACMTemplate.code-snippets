@@ -1,0 +1,183 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	"template": {
+		"scope": "cpp",
+		"prefix": "template",
+		"body": [
+			"#include <bits/stdc++.h>",
+			"using namespace std;",
+			"#ifndef ONLINE_JUDGE",
+			"#include \"include/debug.cpp\"",
+			"#else",
+			"#define debug(...) (void)(0)",
+			"#endif",
+			"using ll = long long;",
+			"using ull = unsigned long long;",
+			"using pii = pair<int, int>;",
+			"void sol(){",
+			"\t",
+			"}",
+			"int main(){",
+			"\tios::sync_with_stdio(0), cin.tie(0), cout.tie(0);",
+			"\tint t = 1;",
+			"\t// cin >> t;",
+			"\twhile (t--){",
+			"\t\tsol();",
+			"\t}",
+			"\treturn 0;",
+			"}"
+		],
+		"description": "C++ template for competitive programming with debug macro"
+	},
+	"templatec": {
+		"scope": "c",
+		"prefix": "template",
+		"body": [
+			"#include <stdio.h>",
+			"int main(){",
+			"\treturn 0;",
+			"}"
+		],
+		"description": "C template with basic structure"
+	},
+	"binpow": {
+		"scope": "cpp",
+		"prefix": "binpow",
+		"body": [
+			"int p = 1;",
+			"int binpow(int a, int b){",
+			"\tif(b == 0){",
+			"\t\treturn 1;",
+			"\t}",
+			"\tif(b % 2 == 0){",
+			"\t\tint res = binpow(a, b / 2) % p;",
+			"\t\treturn (res % p * res) % p;",
+			"\t}else{",
+			"\t\tint res = binpow(a, b - 1) % p;",
+			"\t\treturn ((a % p) * res) % p;",
+			"\t}",
+			"}"
+		],
+		"description": "Binary pow"
+	},	
+	"dsu": {
+		"scope": "cpp",
+		"prefix": "DSU",
+		"body": [
+			"struct DSU {",
+			"\tvector<int> fa;",
+			"\tint n;",
+			"\tDSU(int size): n(size), fa(size) {",
+			"\t\tfor(int i = 0; i < n; i++){",
+			"\t\t\tfa[i] = i;",
+			"\t\t}",
+			"\t};",
+			"",
+			"\tint find(int x) {",
+			"\t\treturn fa[x] == x ? x : fa[x] = find(fa[x]);",
+			"\t}",
+			"",
+			"\tvoid merge(int x, int y) {",
+			"\t\tfa[find(x)] = fa[find(y)];",
+			"\t}",
+			"",
+			"\tbool query(int x, int y){",
+			"\t\treturn find(x) == find(y);",
+			"\t}",
+			"",
+			"\tint root(void){",
+			"\t\tint res = 0;",
+			"\t\tfor(int i = 0; i < n; i++){",
+			"\t\t\tif(fa[i] == i){",
+			"\t\t\t\tres++;",
+			"\t\t\t}",
+			"\t\t}",
+			"\t\treturn res;",
+			"\t}",
+			"};"
+		],
+		"description": "Disjoint Set Union (DSU) data structure"
+	},
+	"gcd": {
+		"scope": "cpp",
+		"prefix": "gcd",
+		"body": [
+			"int gcd(int a, int b){return a % b == 0 ? b : gcd(b, a % b);}",
+		],
+		"description": "Greatest Common Divisor (GCD)"
+	},
+	"lcm": {
+		"scope": "cpp",
+		"prefix": "lcm",
+		"body": [
+			"int lcm(int a, int b){return (a * b) / gcd(a, b);}"
+		],
+		"description": "Least Common Multiple (LCM)"
+	},
+	"fenwick": {
+		"scope": "cpp",
+		"prefix": "Fenwick",
+		"body": [
+			"template<typename T> struct Fenwick{",
+			"\tint n;",
+			"\tvector<T> tr;",
+			"",
+			"\tFenwick(int size) : n(size), tr(size + 1){}",
+			"",
+			"\tint lowbit(int x){",
+			"\t\treturn x & -x;",
+			"\t}",
+			"",
+			"\tvoid update(int idx, T val){",
+			"\t\tfor(int i = idx; i <= n; i += lowbit(i)){",
+			"\t\t\ttr[i] += val;",
+			"\t\t}",
+			"\t}",
+			"",
+			"\tT query(int idx){",
+			"\t\tT res = T();",
+			"\t\tfor(int i = idx; i > 0; i -= lowbit(i)){",
+			"\t\t\tres += tr[i];",
+			"\t\t}",
+			"\t\treturn res;",
+			"\t}",
+			"",
+			"\tT query(int l, int r){",
+			"\t\treturn query(r) - query(l - 1);",
+			"\t}",
+			"};",
+			"using BIT = Fenwick<int>;"
+		],
+		"description": "Fenwick Tree (Binary Indexed Tree)"
+	},
+	"ai": {
+		"scope": "cpp",
+		"prefix": "ai",
+		"body": [
+			"const int N = ;",
+			"",
+			"bool p[N];",
+			"void ai(){",
+			"\tfor(int i = 0; i < N; i++){",
+			"\t\tp[i] = true;",
+			"\t}",
+			"\tp[0] = p[1] = false;",
+			"\tfor(int i = 2; i * i < N; i++){",
+			"\t\tif(p[i]){",
+			"\t\t\tfor(int j = i * i; j < N; j += i){",
+			"\t\t\t\tp[j] = false;",
+			"\t\t\t}",
+			"\t\t}",
+			"\t}",
+			"}"
+		],
+		"description": "Sieve of Eratosthenes for prime number generation"
+	}	
+	
+}
