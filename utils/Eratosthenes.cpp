@@ -1,34 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-const int N = 20000;
-
-bool p[N];
-void ai(){
-    for(int i = 0; i < N; i++){
-        p[i] = true;
-    }
-    p[0] = p[1] = false;
-    for(int i = 2; i * i < N; i++){
-        if(p[i]){
-            for(int j = i * i; j < N; j += i){
-                p[j] = false;
+struct Sieve{
+    int n;
+    vector<bool> p;
+    Sieve(int n): n(n), p(n){
+        for(int i = 0; i < n; i++){
+            p[i] = true;
+        }
+        p[0] = p[1] = false;
+        for(int i = 2; i * i < n; i++){
+            if(p[i]){
+                for(int j = i * i; j < n; j += i){
+                    p[j] = false;
+                }
             }
         }
-    }
-}
+    };
+};
 
 int main(){
-    ai();
-    for(int i = 0; i < N; i++){
+    int n;
+    cin >> n;
+    Sieve sieve(n);
+    vector<bool> p = sieve.p;
+    for(int i = 0; i < n; i++){
         if(p[i]){
-            cout << i << endl;
+            cout << i << '\n';
         }
     }
-    // for(int i = N; i >= 0; i--){
-    //     if(p[i]){
-    //         cout << i << endl;
-    //     }
-    // }
     return 0;
 }
