@@ -1,30 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
+using ll = long long;
+ll binpow(ll a, ll b, ll p){
+    if(b == 0){
+        return 1;
+    }
+    if(b % 2 == 0){
+        ll res = binpow(a, b / 2, p) % p;
+        return (res * res) % p;
+    }else{
+        ll res = binpow(a, b - 1, p) % p;
+        return ((a % p) * res) % p;
+    }
+}
+void sol(){
+    ll x, y, n;
+    cin>> x >> y >> n;
+    for(int i = n - 1; i <= n + 1; i++){
+        cout<< x * binpow(10, i, y) * 10 / y % 10;
+    }
+}
 int main(){
     ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    int a, b;
-    cin >> a >> b;
-    int n;
-    cin >> n;
-    auto work = [&](int a, int b, int n){
-        string res;
-        a -= (a / b) * b;
-        while(a < b){
-            a *= 10;
-            res.push_back((a / b) + '0');
-            a -= (a / b) * b;
-            // cout << a << ' ' << b << '\n';
-            if(res.size() > n + 3){
-                break;
-            }
-        }
-        return res;
-    };
-    cout << work(a, b, n).substr(n - 1, 3);
+    int t = 1;
+    // cin >> t;
+    while (t--){
+        sol();
+    }
     return 0;
 }
-/**
- * 31 / 3
- * 3 / 3 = 1
- * 1 / 3
- */
