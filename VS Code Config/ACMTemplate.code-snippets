@@ -107,7 +107,7 @@
 		"scope": "cpp",
 		"prefix": "gcd",
 		"body": [
-			"int gcd(int a, int b){return a % b == 0 ? b : gcd(b, a % b);}",
+			"int gcd(int a, int b){return b == 0 ? a : gcd(b, a % b);}",
 		],
 		"description": "Greatest Common Divisor (GCD)"
 	},
@@ -176,7 +176,7 @@
 			"\t\t\t}",
 			"\t\t}",
 			"\t};",
-			"}"
+			"};"
 		],
 		"description": "Sieve of Eratosthenes for prime number generation"
 	},
@@ -184,8 +184,6 @@
 		"scope": "cpp",
 		"prefix": "LCA",
 		"body": [
-			"#include <bits/stdc++.h>",
-			"using namespace std;",
 			"struct LCA{",
 			"\tint LOG;",
 			"\tvector<vector<int>> fa;", 
