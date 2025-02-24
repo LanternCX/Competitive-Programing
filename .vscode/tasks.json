@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "C++ Build (Current File)",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-o",
+                "${fileDirname}\\build\\${fileBasenameNoExtension}",
+                "${fileDirname}\\${fileBasenameNoExtension}.cpp",
+                "-g"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Build in debug mode"
+        }
+    ]
+  }
+  
