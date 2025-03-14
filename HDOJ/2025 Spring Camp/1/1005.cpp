@@ -17,7 +17,7 @@ struct node{
 };
 
 int id(int i, int j){
-	return (i) * m + j;
+	return i * m + j;
 }
 
 vector<vector<int>> dij(int stx, int sty, vector<vector<int>> t, vector<vector<int>> d){
