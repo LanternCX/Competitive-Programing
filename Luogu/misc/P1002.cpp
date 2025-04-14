@@ -1,10 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-#ifndef ONLINE_JUDGE
-#include "include/debug.cpp"
-#else
-#define debug(...) (void)(0)
-#endif
 using ll = long long;
 using ull = unsigned long long;
 using pii = pair<int, int>;
