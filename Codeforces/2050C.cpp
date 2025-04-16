@@ -8,25 +8,42 @@ using namespace std;
 using ll = long long;
 using ull = unsigned long long;
 using pii = pair<int, int>;
+#define int long long
 void sol(){
-    
-}
-void test(){
-    int n = 0;
-    while(n < 1e3){
-        n += 9;
-        cout << n << '\n';
+    string s;
+    cin >> s;
+    int sum = 0;
+    vector<int> cnt(10);
+    for(auto ch : s){
+        sum += ch - '0';
+        cnt[ch - '0']++;
     }
+    if(sum % 9 == 0){
+        cout << "YES\n";
+        return;
+    }
+    cnt[2] = min(cnt[2], 10LL);
+    cnt[3] = min(cnt[3], 10LL);
+    for(int i = 0; i <= cnt[2]; i++){
+        for(int j = 0; j <= cnt[3]; j++){
+            if((sum + i * 2 + j * 6) % 9 == 0){
+                cout << "YES\n";
+                return;
+            }
+        }
+    }
+    cout << "NO\n";
 }
-int main(){
+signed main(){
     ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--){
-        test();
+        sol();
     }
     return 0;
 }
 /**
- * x % 9 
+ * 2 -> 4
+ * 3 -> 9
  */
