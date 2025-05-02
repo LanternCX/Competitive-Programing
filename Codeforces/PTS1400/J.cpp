@@ -8,6 +8,7 @@ using namespace std;
 using ll = long long;
 using ull = unsigned long long;
 using pii = pair<int, int>;
+#define int long long
 void sol(){
     int n;
     cin >> n;
@@ -77,7 +78,7 @@ void sol(){
         cout << x + 1 << ' ';
     }
 }
-int main(){
+signed main(){
     // ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     int t = 1;
     // cin >> t;
