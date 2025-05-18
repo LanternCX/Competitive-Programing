@@ -1,35 +1,42 @@
 # ACM Note No.20: Geometry
 
-### 封闭图形面积
+
+
+### 多边形面积
+
+连接原点与两个相邻的点，则封闭图形的面积就是`所有的这样的三角形的叉乘和 * (1 / 2)`
+
+[P1183 多边形的面积 - 洛谷](https://www.luogu.com.cn/problem/P1183)
 
 ```c++
-int n;
-auto work = [&](node a, node b, node c) {
-    double x1 = a.x - b.x;
-    double y1 = a.y - b.y;
-
-    double x2 = a.x - c.x;
-    double y2 = a.y - c.y;
-
-    return (x1 * y2 - x2 * y1) / 2;
+struct node {
+    double x, y;
 };
-while (cin >> n) {
-    if(n == 0){
-        return;
+int main(){
+    int n;
+    cin >> n;
+    vector<node> a(n);
+    for (auto &[x, y] : a) {
+        cin >> x >> y;
     }
+    auto work = [&](node a, node b) {
+        return a.x * b.y - a.y * b.x;
+    };
+
     double ans = 0;
-    vector<node> arr(n);
-    for (auto &nd : arr) {
-        cin >> nd.x >> nd.y;
+    for (int i = 0; i < n - 1; i++) {
+        ans += work(a[i], a[i + 1]);
     }
-    for (int i = 1; i < n - 1; i++) {
-        ans += work(arr[0], arr[i], arr[i + 1]);
-    }
-    cout << ans << '\n';
-}  
+    cout << abs(ans)  / 2 << '\n';
+    return 0;
+}
 ```
 
-### 封闭图形重心
+### 多边形重心
+
+**x 坐标**: `sum(x1 * x2 * 叉乘) / 6S`
+
+**y 坐标**: `sum(y1 * y2 * 叉乘) / 6S`
 
 ```c++
 int N;
