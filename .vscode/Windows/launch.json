@@ -21,6 +21,16 @@
       ],
       "preLaunchTask": "C++ Build (Current File)",
       "miDebuggerPath": "C:/Program Files/mingw64/bin/gdb.exe"
+    }, {
+      "name": "C++ Run (With CMD Windows)",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${fileDirname}/build/${fileBasenameNoExtension}.exe",
+      "args": [],
+      "cwd": "${fileDirname}/build",
+      "environment": [],
+      "externalConsole": true,
+      "preLaunchTask": "C++ Build (Current File)"
     }
   ]
 }
