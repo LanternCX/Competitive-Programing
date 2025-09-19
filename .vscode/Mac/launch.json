@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "LLDB Debug (Current File)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${fileDirname}/build/${fileBasenameNoExtension}",
+      "args": [],
+      "cwd": "${fileDirname}/build",
+      "stopOnEntry": false,
+      "preLaunchTask": "C++ Build (Current File)",
+      "console": "integratedTerminal",
+      "terminal": "integrated",
+      "env": {}
+    }
+  ]
+}
