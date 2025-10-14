@@ -2,18 +2,19 @@
 #include <string.h>
 
 int main() {
-	int n;
+    int n;
     scanf("%d", &n);
     char str[100];
     scanf("%s", str);
     int len = strlen(str);
     for (int i = 0; i < len; i++) {
+        char ch = str[i] + n;
         if (str[i] + n > 'z') {
-            str[i] = str[i] + n - ('z' - 'a') - 1;
+            str[i] = ch - ('z' - 'a') - 1;
         } else {
-            str[i] = str[i] + n;
+            str[i] = ch;
         }
     }
     printf("%s", str);
-	return 0;
+    return 0;
 }

@@ -1,6 +1,6 @@
+#include <math.h>
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
 
 int main() {
     int l, n;
@@ -9,7 +9,7 @@ int main() {
     for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
-    
+
     int ans1 = 0, ans2 = 0;
     for (int i = 0; i < n; i++) {
         ans1 = fmax(ans1, fmin(l + 1 - arr[i], arr[i]));

@@ -1,6 +1,6 @@
+#include <math.h>
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
 
 int main() {
     int a[10001], b[10001], g[10001], k[10001];

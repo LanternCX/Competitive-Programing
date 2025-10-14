@@ -1,6 +1,6 @@
+#include <math.h>
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
 
 int is_prime(int n) {
     if (n == 0 || n == 1) {
@@ -26,7 +26,7 @@ int main() {
     for (int i = 0; i < 26; i++) {
         mx = fmax(mx, cnt[i]);
         if (cnt[i] > 0) {
-            mn = fmin(mn, cnt[i]);   
+            mn = fmin(mn, cnt[i]);
         }
     }
     int det = mx - mn;

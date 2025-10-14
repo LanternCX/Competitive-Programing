@@ -1,12 +1,12 @@
 #include <stdio.h>
-char map[5][50] = {
+
+const char map[5][50] = {
     "XXX...X.XXX.XXX.X.X.XXX.XXX.XXX.XXX.XXX",
     "X.X...X...X...X.X.X.X...X.....X.X.X.X.X",
     "X.X...X.XXX.XXX.XXX.XXX.XXX...X.XXX.XXX",
     "X.X...X.X.....X...X...X.X.X...X.X.X...X",
     "XXX...X.XXX.XXX...X.XXX.XXX...X.XXX.XXX",
 };
-
 
 int main() {
     int n;
