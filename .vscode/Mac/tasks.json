@@ -6,6 +6,7 @@
       "type": "shell",
       "command": "clang++",
       "args": [
+        "-std=c++20",
         "-g",
         "-o",
         "${fileDirname}/build/${fileBasenameNoExtension}",
