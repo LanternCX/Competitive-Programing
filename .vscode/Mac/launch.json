@@ -10,7 +10,6 @@
       "cwd": "${fileDirname}/build",
       "stopOnEntry": false,
       "preLaunchTask": "C++ Build (Current File)",
-      "console": "integratedTerminal",
       "terminal": "integrated",
       "env": {}
     }
